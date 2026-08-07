@@ -1,0 +1,54 @@
+server:
+  port: 8080
+  forward-headers-strategy: framework
+
+spring:
+  application:
+    name: cloud-gateway
+
+  cloud:
+    gateway:
+
+      httpclient:
+        connect-timeout: 5000
+        response-timeout: 30s
+
+      globalcors:
+        cors-configurations:
+          "[/**]":
+            allowedOrigins:
+              - http://localhost:5173
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - PATCH
+              - OPTIONS
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
+
+      routes:
+
+        - id: product-service
+          uri: ${PRODUCT_SERVICE_URI:http://product-service:8080}
+
+          predicates:
+            - Path=/product/**
+
+          filters:
+            - RewritePath=/product/(?<segment>.*), /v1/product/${segment}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+
+  endpoint:
+    health:
+      show-details: always
