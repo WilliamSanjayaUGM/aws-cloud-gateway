@@ -38,12 +38,9 @@ spring:
           routes:
 
             - id: product-service
-
-              uri: ${PRODUCT_SERVICE_URI:http://product-service.spring.local:8080}
-
+              uri: ${PRODUCT_SERVICE_URI:http://product-service.spring-product-local:8080}
               predicates:
                 - Path=/product/**
-
               filters:
                 - RewritePath=/product/(?<segment>.*), /v1/product/${segment}
 
