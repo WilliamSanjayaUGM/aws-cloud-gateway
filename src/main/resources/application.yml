@@ -36,13 +36,18 @@ spring:
                 allowCredentials: true
 
           routes:
-
             - id: product-service
               uri: ${PRODUCT_SERVICE_URI:http://product-service.spring-product-local:8080}
               predicates:
                 - Path=/product/**
               filters:
                 - RewritePath=/product/(?<segment>.*), /v1/product/${segment}
+            - id: order-service
+              uri: ${ORDER_SERVICE_URI:http://order-service.spring-order-local:8080}
+              predicates:
+                - Path=/order/**
+              filters:
+                - RewritePath=/order/(?<segment>.*), /v1/order/${segment}
 
 management:
   endpoints:
