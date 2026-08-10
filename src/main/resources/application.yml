@@ -47,8 +47,8 @@ spring:
               predicates:
                 - Path=/order/**
               filters:
-                - RewritePath=/order/(?<segment>.*), /v1/order/${segment}
-                # - SetPath=/v1/order
+                # - RewritePath=/order/(?<segment>.*), /v1/order/${segment}
+                - SetPath=/v1/order
 
 management:
   endpoints:
