@@ -63,7 +63,9 @@ management:
 
 logging:
   level:
-    org.springframework.cloud.gateway: DEBUG
+    org.springframework.cloud.gateway: TRACE
     org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: TRACE
     org.springframework.cloud.gateway.handler.RoutePredicateHandlerMapping: TRACE
-    reactor.netty: DEBUG
+
+    reactor.netty.http.client: DEBUG
+    reactor.netty.transport: DEBUG
