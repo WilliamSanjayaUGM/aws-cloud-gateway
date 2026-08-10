@@ -58,6 +58,9 @@ management:
   endpoint:
     health:
       show-details: always
+    gateway:
+      enabled: true
+      access: read-only
 
 logging:
   level:
