@@ -43,7 +43,7 @@ spring:
               filters:
                 - RewritePath=/product/(?<segment>.*), /v1/product/${segment}
             - id: order-service
-              uri: ${ORDER_SERVICE_URI:http://order-service.spring-order-local:8080}
+              uri: ${ORDER_SERVICE_URI:http://order-service.spring-product-local:8080}
               predicates:
                 - Path=/order/**
               filters:
